@@ -18,7 +18,8 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final bool isMobile = constraints.maxWidth < 800; // Define mobile breakpoint
+        final bool isMobile =
+            constraints.maxWidth < 800; // Define mobile breakpoint
         return Scaffold(
           appBar: isMobile
               ? AppBar(
@@ -33,7 +34,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   ],
                 )
               : null, // Hide AppBar on larger screens
-          drawer: isMobile ? const DashboardDrawer() : null, // Drawer for mobile
+          drawer:
+              isMobile ? const DashboardDrawer() : null, // Drawer for mobile
           body: Row(
             children: [
               if (!isMobile)
@@ -91,23 +93,28 @@ class DashboardMenu extends StatelessWidget {
               ),
               child: ExpansionTile(
                 leading: Icon(item.icon, color: Colors.white),
-                title: Text(item.title, style: const TextStyle(color: Colors.white)),
+                title: Text(item.title,
+                    style: const TextStyle(color: Colors.white)),
                 iconColor: Colors.white,
                 childrenPadding: const EdgeInsets.only(left: 20),
                 children: <Widget>[
                   ListTile(
                     leading: const Icon(Icons.dashboard, color: Colors.white),
-                    title: const Text('Overview', style: TextStyle(color: Colors.white)),
+                    title: const Text('Overview',
+                        style: TextStyle(color: Colors.white)),
                     onTap: () => context.go(RoutesPath.overview),
                   ),
                   ListTile(
-                    leading: const Icon(Icons.attach_money, color: Colors.white),
-                    title: const Text('Sales', style: TextStyle(color: Colors.white)),
+                    leading:
+                        const Icon(Icons.attach_money, color: Colors.white),
+                    title: const Text('Sales',
+                        style: TextStyle(color: Colors.white)),
                     onTap: () => context.go(RoutesPath.sales),
                   ),
                   ListTile(
                     leading: const Icon(Icons.show_chart, color: Colors.white),
-                    title: const Text('Performance', style: TextStyle(color: Colors.white)),
+                    title: const Text('Performance',
+                        style: TextStyle(color: Colors.white)),
                     onTap: () => context.go(RoutesPath.performance),
                   ),
                 ],
@@ -123,9 +130,20 @@ class DashboardMenu extends StatelessWidget {
             ),
             child: ListTile(
               leading: Icon(item.icon, color: Colors.white),
-              title: Text(item.title, style: const TextStyle(color: Colors.white)),
+              title:
+                  Text(item.title, style: const TextStyle(color: Colors.white)),
               onTap: () {
-                context.go(item.route);
+                if (item.title == 'settings') {
+                  GoRouter.of(context).goNamed(
+                    RoutesName.settings,
+                    pathParameters: {
+                      'id': '123', 
+                      'name': 'John Doe',
+                    },
+                  );
+                } else {
+                  context.go(item.route);
+                }
               },
             ),
           );
@@ -155,22 +173,27 @@ class DashboardDrawer extends StatelessWidget {
             if (item.title == RoutesName.analytics) {
               return ExpansionTile(
                 leading: Icon(item.icon, color: Colors.white),
-                title: Text(item.title, style: const TextStyle(color: Colors.white)),
+                title: Text(item.title,
+                    style: const TextStyle(color: Colors.white)),
                 childrenPadding: const EdgeInsets.only(left: 20),
                 children: <Widget>[
                   ListTile(
                     leading: const Icon(Icons.dashboard, color: Colors.white),
-                    title: const Text('Overview', style: TextStyle(color: Colors.white)),
+                    title: const Text('Overview',
+                        style: TextStyle(color: Colors.white)),
                     onTap: () => context.go(RoutesPath.overview),
                   ),
                   ListTile(
-                    leading: const Icon(Icons.attach_money, color: Colors.white),
-                    title: const Text('Sales', style: TextStyle(color: Colors.white)),
+                    leading:
+                        const Icon(Icons.attach_money, color: Colors.white),
+                    title: const Text('Sales',
+                        style: TextStyle(color: Colors.white)),
                     onTap: () => context.go(RoutesPath.sales),
                   ),
                   ListTile(
                     leading: const Icon(Icons.show_chart, color: Colors.white),
-                    title: const Text('Performance', style: TextStyle(color: Colors.white)),
+                    title: const Text('Performance',
+                        style: TextStyle(color: Colors.white)),
                     onTap: () => context.go(RoutesPath.performance),
                   ),
                 ],
@@ -180,7 +203,8 @@ class DashboardDrawer extends StatelessWidget {
             // Other items
             return ListTile(
               leading: Icon(item.icon, color: Colors.white),
-              title: Text(item.title, style: const TextStyle(color: Colors.white)),
+              title:
+                  Text(item.title, style: const TextStyle(color: Colors.white)),
               onTap: () {
                 context.go(item.route);
               },
